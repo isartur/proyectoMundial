@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;//prueva
+import javax.swing.WindowConstants;//prueva  // ahora en inversa
 
 public class GUIManual extends JFrame {
 
