@@ -20,7 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -78,18 +77,11 @@ public class GUIManual extends JFrame {
     static int D = 0;
     static int E = 0;
     static int F = 0;
-    static int G = 0;
-    static int H = 0;
-    static int I = 0;
-    static int J = 0;
-    static int K = 0;
+    
 
     static int z = 0;
-    static int k = 0;
-    static int n = 0;
     static int h = 0;
     static int x = 0;
-    static int Z = 0;
     static int w = 0;
     static int g = 0;
 
@@ -547,64 +539,64 @@ public class GUIManual extends JFrame {
     private void calcularPuntos() {
 
         marcadores = new String[32][7];
-        int k = 1;
+
+        int guardarFila = 0;
+        columna = 1;
+        fila = 0;
+        suma = 0;
+
         grupo = grupos[0][0];
 
-        while (E < 45) {      //capto de cada fila los paises que se enfrentan ella
+        while (fila < 45) {                                                            //capto de cada fila los paises que se enfrentan ella
 
-            Pais = resultados[E][k];
+            Pais = resultados[fila][columna];
             puntos = 0;
-            F = E;            //variable en la que guardo la posicion de la fila general
+            guardarFila = fila;                                                        //variable en la que guardo la posicion de la fila general
 
-            //    equipoConMasyMenosGoles();
-            while (D < 6) {   //recorro las 6 filas de cada grupo para optener puntos
-                n = n + A;    //variable que almacenara todos los golesTex marcados en el mundial
-                A = 0;        //variable que convierte a entero el numero de golesTex marcado por cada equipo en su grupo 
-                C = 0;
+            while (contador1 < 6) {                                                    //recorro las 6 filas de cada grupo para optener puntos
+                golesLoc = 0;                                                          //variable que convierte a entero el numero de golesTex marcado por cada equipo en su grupo 
+                golesVic = 0;
 
                 //segun el resultados en golesTex de los partidos, calculo cantidad de puntos optenidos por equipo
-                if (resultados[E][1].equals(Pais) || resultados[E][2].equals(Pais)) {
-                    if (resultados[E][1].equals(Pais)) {
-                        A = Integer.parseInt(resultados[E][5]);
-                        C = Integer.parseInt(resultados[E][6]);
-                        Z = Z + A;
-                        golesTex = String.valueOf(Z);
-                        K++;
-                        G = A + C;
-                        if (K < 2) {
-                            I = G;
+                if (resultados[fila][1].equals(Pais) || resultados[fila][2].equals(Pais)) {
+                    if (resultados[fila][1].equals(Pais)) {
+                        golesLoc = Integer.parseInt(resultados[fila][5]);
+                        golesVic = Integer.parseInt(resultados[fila][6]);
+                        suma = suma + golesLoc;
+                        golesTex = String.valueOf(suma);
+                        contador2++;
+                        golesInt = golesLoc + golesVic;
+                        if (contador2 < 2) {
+                            menosGoles = golesInt;
                         }
-                        if (G > H) {
-                            H = G;
-                            System.out.println("mayor " + H + " menor " + J);
+                        if (golesInt > masGoles) {
+                            masGoles = golesInt;
 
                         } else {
-                            if (G < I) {
-                                J = G;
-                                I = J;
-                                System.out.println("mayor " + H + " menor " + J);
+                            if (golesInt < menosGoles) {
+                                menosGoles = golesInt;
                             }
                         }
 
-                        if (A > C) {
+                        if (golesLoc > golesVic) {
                             puntos = puntos + 3;
                         } else {
-                            if (C > A) {
+                            if (golesVic > golesLoc) {
                             } else {
                                 puntos = puntos + 1;
 
                             }
                         }
                     } else {
-                        A = Integer.parseInt(resultados[E][6]);                                                //se crea una variable que va a guardar el nombre de cada continente 
-                        C = Integer.parseInt(resultados[E][5]);
-                        Z = Z + A;
-                        golesTex = String.valueOf(Z);
-                        if (A > C) {
+                        golesLoc = Integer.parseInt(resultados[fila][6]);                                                //se crea una variable que va a guardar el nombre de cada continente 
+                        golesVic = Integer.parseInt(resultados[fila][5]);
+                        suma = suma + golesLoc;
+                        golesTex = String.valueOf(suma);
+                        if (golesLoc > golesVic) {
                             puntos = puntos + 3;
 
                         } else {
-                            if (C > A) {
+                            if (golesVic > golesLoc) {
                             } else {
                                 puntos = puntos + 1;
 
@@ -612,16 +604,16 @@ public class GUIManual extends JFrame {
                         }
                     }
                 }
-                D++;
-                E++;
-                if (E == 48) {
-                    D = 6;
+                contador1++;
+                fila++;
+                if (fila == 48) {
+                    contador1 = 6;
                     z++;
                 }
             }
 
             //segun resultados se va llenando la matriz marcadores 
-            D = 0;
+            contador1 = 0;
             B = String.valueOf(puntos);
             a = 0;
             marcadores[b][a] = grupo;
@@ -631,20 +623,18 @@ public class GUIManual extends JFrame {
             marcadores[b][a] = B;
             a++;
             marcadores[b][a] = String.valueOf(golesTex);;
-            Z = 0;
-            marcadores[0][6] = partidos;
-            marcadores[2][6] = "Promedio de Goles";
-            marcadores[3][6] = promedioGoles;
+            suma = 0;
+            marcadores[0][5] = partidos;
             b++;
 
-            if (k == 2) {
+            if (columna == 2) {
                 h++;
-                E = F + 1;
-                k = 0;
+                fila = guardarFila + 1;
+                columna = 0;
                 if (h == 2) {
                     x++;
                     h = 0;
-                    E = E + 4;
+                    fila = fila + 4;
                     if (x == 8) {
                         x = 7;
                     }
@@ -652,10 +642,12 @@ public class GUIManual extends JFrame {
                     grupo = grupos[x][0];
                 }
             } else {
-                E = F;
+                fila = guardarFila;
             }
-            k++;
+            columna++;
         }
+        masGoles = 0;
+        menosGoles = 0;
     }
 
     private void calcularClasificados() {
@@ -737,6 +729,7 @@ public class GUIManual extends JFrame {
     private void promedioDeGoles() {
 
         DecimalFormat formato = new DecimalFormat("#.00");
+        totalGoles = 0;
 
         for (int i = 0; i < resultados.length; i++) {
             golesLoc = Integer.parseInt(resultados[i][5]);
@@ -749,12 +742,12 @@ public class GUIManual extends JFrame {
                 promedioGoles = String.valueOf(formato.format(totalGoles));
             }
         }
+        marcadores[2][5] = "Promedio de Goles";
+        marcadores[3][5] = promedioGoles;
         System.out.println(promedioGoles);
     }
 
     private void partidoConMasyMenosGoles() {
-
-        String[][] golesPorPartido = new String[48][2];
 
         menosGoles = suma;
 
@@ -767,25 +760,27 @@ public class GUIManual extends JFrame {
             if (suma > masGoles) {
                 masGoles = suma;
                 mayorCantidadGoles = (Pais + ", " + masGoles);
-                golesPorPartido[i][0] = Pais;
-                golesPorPartido[i][1] = String.valueOf(masGoles);
-
             } else {
                 if (suma < menosGoles) {
                     menosGoles = suma;
                     menorCantidadGoles = (Pais + ", " + menosGoles);
-                    golesPorPartido[i][0] = Pais;
-                    golesPorPartido[i][1] = String.valueOf(menosGoles);
-
                 }
             }
         }
+        marcadores[11][5] = "Partidos con mas Goles";
+        marcadores[12][5] = mayorCantidadGoles;
+        marcadores[14][5] = "Partidos con menos Goles";
+        marcadores[15][5] = menorCantidadGoles;
+
         System.out.println("\nPartido Con Mayor Cantidad de Goles\n" + mayorCantidadGoles);
         System.out.println("\nPartido Con Menor Cantidad de Goles\n" + menorCantidadGoles);
 
     }
 
     private void partidoConGanadorOEmpate() {
+
+        contador1 = 0;
+        contador2 = 0;
 
         for (int i = 0; i < resultados.length; i++) {
             golesLoc = Integer.parseInt(resultados[i][5]);
@@ -794,9 +789,13 @@ public class GUIManual extends JFrame {
             if (golesLoc > golesVic || golesLoc < golesVic) {
                 contador1++;
                 partidosConGanador = String.valueOf(contador1);
+                marcadores[5][5] = "Partidos con ganador";
+                marcadores[6][5] = partidosConGanador;
             } else {
                 contador2++;
                 partidosConEmpate = String.valueOf(contador2);
+                marcadores[8][5] = "Partidos con empate";
+                marcadores[9][5] = partidosConEmpate;
             }
 
         }
@@ -936,20 +935,25 @@ public class GUIManual extends JFrame {
                 golesLoc = Integer.parseInt(Matcontinentes[i][1]);
                 if (golesInt > golesLoc && golesInt > masGoles) {
                     masGoles = golesInt;
-                    continenteMasGoles = String.valueOf("\nContinente Con Mass Goles :\n" + Matcontinentes[j][0] + "  = " + masGoles);
+                    continenteMasGoles = String.valueOf(Matcontinentes[j][0] + "  = " + masGoles);
                     if (j == 0 && i == 0) {
                         menosGoles = masGoles;
                     }
                 } else {
                     if (menosGoles > golesInt) {
                         menosGoles = golesInt;
-                        continenteMenosGoles = String.valueOf("Continente Con Menos Goles :\n" + Matcontinentes[j][0] + "  = " + menosGoles);
+                        continenteMenosGoles = String.valueOf(Matcontinentes[j][0] + "  = " + menosGoles);
 
                     }
 
                 }
             }
         }
+        marcadores[17][5] = "Cont. menos Goles";
+        marcadores[18][5] = continenteMenosGoles;
+        marcadores[20][5] = "Cont. mas Goles";
+        marcadores[21][5] = continenteMasGoles;
+
         System.out.println(continenteMasGoles + "\n\n" + continenteMenosGoles);
 
     }
@@ -995,6 +999,7 @@ public class GUIManual extends JFrame {
         marcadoresPanel.setPreferredSize((new java.awt.Dimension(910, 450)));
         marcadoresPanel.setMaximumSize(jPanelRight.getPreferredSize());
         JScrollPane scrollPane = new JScrollPane(table);
+
         marcadoresPanel.add(scrollPane);
 
         jPanelMain.removeAll();
