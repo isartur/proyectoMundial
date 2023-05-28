@@ -77,7 +77,6 @@ public class GUIManual extends JFrame {
     static int D = 0;
     static int E = 0;
     static int F = 0;
-    
 
     static int z = 0;
     static int h = 0;
@@ -806,7 +805,8 @@ public class GUIManual extends JFrame {
     private void seleccionConMasyMenosGoles() {
 
         String[][] equipoConMasyMenosGoles = new String[14][2];
-
+        
+        int a = 27;
         golesInt = 0;
         menosGoles = 8;
         masGoles = 0;
@@ -820,9 +820,11 @@ public class GUIManual extends JFrame {
                 if (golesInt >= masGoles) {
                     masGoles = golesInt;
                     if (contador2 == 1) {
-                        seleccionMasGoles = ("Seleccion con mas goles:  " + marcadores[j][1] + "  =  " + marcadores[j][3]);
+                        seleccionMasGoles = (marcadores[j][1] + "  =  " + marcadores[j][3]);
                         equipoConMasyMenosGoles[contador1][0] = marcadores[j][1];
                         equipoConMasyMenosGoles[contador1][1] = marcadores[j][3];
+                        marcadores[23][5] = "Selec. con mas Goles";
+                        marcadores[24][5] = seleccionMasGoles;
                         contador1++;
 
                     }
@@ -830,9 +832,14 @@ public class GUIManual extends JFrame {
                 if (golesInt <= menosGoles) {
                     menosGoles = golesInt;
                     if (contador2 == 2) {
-                        seleccionMenosGoles = ("Seleccion con menos goles:  " + marcadores[j][1] + "  =  " + marcadores[j][3]);
+                        seleccionMenosGoles = (marcadores[j][1] + "  =  " + marcadores[j][3]);
                         equipoConMasyMenosGoles[contador1][0] = marcadores[j][1];
                         equipoConMasyMenosGoles[contador1][1] = marcadores[j][3];
+                        marcadores[26][5] = "Selec. con menos Goles";
+                        if (a < 32) {
+                            marcadores[a][5] = seleccionMenosGoles;
+                            a++;
+                        }
                         contador1++;
 
                     }
