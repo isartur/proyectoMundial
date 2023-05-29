@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;//prueva  // ahora en inversa
+import javax.swing.WindowConstants;
 
 public class GUIManual extends JFrame {
 
@@ -126,6 +126,9 @@ public class GUIManual extends JFrame {
     private JPanel jPanelMenuParcial;
     private JLabel btnParcial;
 
+    private JPanel jPanelMenuParcial2;
+    private JLabel btnParcial2;
+
     // Elementos de panel de contenido
     private JPanel jPanelRight;
     private JPanel jPanelLabelTop;
@@ -175,6 +178,9 @@ public class GUIManual extends JFrame {
         jPanelMenuParcial = new JPanel();
         btnParcial = new JLabel();
 
+        jPanelMenuParcial2 = new JPanel();
+        btnParcial2 = new JLabel();
+
         // Pinta el logo de la aplicación
         pintarLogo();
 
@@ -195,6 +201,9 @@ public class GUIManual extends JFrame {
 
         // Pinta la opción de Menú parcial
         pintarMenuParcial();
+        
+        //Pintar la opcion de menu parcial2
+    //    pintarMenuParcial2();
 
         // Pinta y ajuste diseño del contenedor del panel izquierdo
         pintarPanelIzquierdo();
@@ -805,7 +814,7 @@ public class GUIManual extends JFrame {
     private void seleccionConMasyMenosGoles() {
 
         String[][] equipoConMasyMenosGoles = new String[14][2];
-        
+
         int a = 27;
         golesInt = 0;
         menosGoles = 8;
@@ -1043,6 +1052,28 @@ public class GUIManual extends JFrame {
         });
     }
 
+ /*    private void pintarMenuParcial2() {
+        btnParcial2.setIcon(new ImageIcon(getClass().getResource("/resources/icons/home.png"))); // NOI18N
+        btnParcial2.setText("Parcial2");
+        btnParcial2.setForeground(new java.awt.Color(255, 255, 255));
+
+        JLabel vacioParcial2 = new JLabel();
+        jPanelMenuParcial2.setBackground(new java.awt.Color(17, 41, 63));
+        jPanelMenuParcial2.setPreferredSize((new java.awt.Dimension(220, 35)));
+        jPanelMenuParcial2.setLayout(new BorderLayout(15, 0));
+        jPanelMenuParcial2.add(vacioParcial2, BorderLayout.WEST);
+        jPanelMenuParcial2.add(btnParcial2, BorderLayout.CENTER);
+        jPanelMenu.add(jPanelMenuParcial2);
+
+        btnParcial2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                System.out.println("Parcial2");
+              //  accionParcia2();
+            }
+        });
+    }*/
+
+    
     private void accionParcial() {
 
         jLabelTop.setText("Parcial");
